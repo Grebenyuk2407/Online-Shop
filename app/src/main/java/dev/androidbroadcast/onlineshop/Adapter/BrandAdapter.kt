@@ -1,5 +1,6 @@
 package dev.androidbroadcast.onlineshop.Adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
@@ -31,7 +32,7 @@ class BrandAdapter(val items:MutableList<BrandModel>):
         return Viewholder(binding)
     }
 
-    override fun onBindViewHolder(holder: BrandAdapter.Viewholder, position: Int) {
+    override fun onBindViewHolder(holder: BrandAdapter.Viewholder, @SuppressLint("RecyclerView") position: Int) {
         val item = items[position]
         holder.binding.title.text = item.title
 

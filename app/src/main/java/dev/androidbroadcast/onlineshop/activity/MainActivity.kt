@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import dev.androidbroadcast.onlineshop.Adapter.BrandAdapter
+import dev.androidbroadcast.onlineshop.Adapter.PopularAdapter
 import dev.androidbroadcast.onlineshop.Models.SliderModel
 import dev.androidbroadcast.onlineshop.Adapter.SliderAdapter
 import dev.androidbroadcast.onlineshop.databinding.ActivityMainBinding
@@ -23,6 +24,7 @@ class MainActivity : BaseActivity() {
 
         initBanner()
         initBrand()
+        initPopular()
 
 
     }
@@ -65,5 +67,16 @@ class MainActivity : BaseActivity() {
             binding.progressBarBrand.visibility = View.GONE
         })
         viewModel.loadBrands()
+    }
+
+    private fun initPopular() {
+        binding.progressBarPopular.visibility = View.VISIBLE
+        viewModel.popular.observe(this, Observer {
+            binding.viewPopular.layoutManager =
+                LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            binding.viewPopular.adapter = PopularAdapter(it)
+            binding.progressBarPopular.visibility = View.GONE
+        })
+        viewModel.loadPopular()
     }
 }
