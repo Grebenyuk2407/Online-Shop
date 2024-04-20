@@ -3,6 +3,7 @@ package dev.androidbroadcast.onlineshop.activity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -72,8 +73,7 @@ class MainActivity : BaseActivity() {
     private fun initPopular() {
         binding.progressBarPopular.visibility = View.VISIBLE
         viewModel.popular.observe(this, Observer {
-            binding.viewPopular.layoutManager =
-                LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            binding.viewPopular.layoutManager = GridLayoutManager(this@MainActivity, 2)
             binding.viewPopular.adapter = PopularAdapter(it)
             binding.progressBarPopular.visibility = View.GONE
         })
