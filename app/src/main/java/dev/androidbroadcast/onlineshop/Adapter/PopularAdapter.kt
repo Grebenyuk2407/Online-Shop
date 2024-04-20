@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
-import dev.androidbroadcast.onlineshop.Models.ItemModel
+import dev.androidbroadcast.onlineshop.Models.ItemsModel
+import dev.androidbroadcast.onlineshop.activity.DetailActivity
 import dev.androidbroadcast.onlineshop.databinding.ViewholderRecommendedBinding
 
-class PopularAdapter(val items: MutableList<ItemModel>):RecyclerView.Adapter<PopularAdapter.ViewHolder>() {
+class PopularAdapter(val items: MutableList<ItemsModel>):RecyclerView.Adapter<PopularAdapter.ViewHolder>() {
     private var context:Context? = null
 
     class ViewHolder(val binding: ViewholderRecommendedBinding):RecyclerView.ViewHolder(binding.root)
@@ -34,9 +35,11 @@ class PopularAdapter(val items: MutableList<ItemModel>):RecyclerView.Adapter<Pop
             .into(holder.binding.pic)
 
 
-       // holder.itemView.setOnClickListener {
-        //    val intent = Intent
-        //}
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context,DetailActivity::class.java)
+            intent.putExtra("object",items[position])
+            holder.itemView.context.startActivity(intent)
+        }
 
     }
 
